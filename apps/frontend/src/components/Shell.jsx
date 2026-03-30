@@ -45,16 +45,13 @@ export default function Shell({ children }) {
           </nav>
           <div className="flex items-center gap-3">
             {user ? (
-              <div
-                className="relative"
-                onMouseEnter={() => setMenuOpen(true)}
-                onMouseLeave={() => setMenuOpen(false)}
-              >
+              <div className="relative">
                 <button
                   type="button"
+                  onClick={() => setMenuOpen(!menuOpen)}
                   className="flex items-center gap-3 rounded-full border border-ink/10 bg-white/80 py-2 pr-3 pl-2 text-sm font-semibold text-ink shadow-sm backdrop-blur transition hover:bg-white"
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-indigo-600 text-sm font-semibold text-white">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-leaf text-sm font-semibold text-white">
                     {initials || "U"}
                   </span>
                   <span className="hidden sm:flex flex-col items-start leading-tight">
@@ -64,44 +61,61 @@ export default function Shell({ children }) {
                 </button>
 
                 {menuOpen && (
-                  <div className="absolute right-0 mt-2 w-52 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        navigate("/profile");
-                        setMenuOpen(false);
-                      }}
-                      className="w-full px-4 py-3 text-left text-sm font-medium text-ink hover:bg-gray-50"
-                    >
-                      View Profile
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        navigate("/settings");
-                        setMenuOpen(false);
-                      }}
-                      className="w-full px-4 py-3 text-left text-sm font-medium text-ink hover:bg-gray-50"
-                    >
-                      Settings
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        logout();
-                        setMenuOpen(false);
-                      }}
-                      className="w-full px-4 py-3 text-left text-sm font-medium text-ink hover:bg-gray-50"
-                    >
-                      Logout
-                    </button>
-                  </div>
+                  <>
+                    <div 
+                      className="fixed inset-0 z-10" 
+                      onClick={() => setMenuOpen(false)}
+                    />
+                    <div className="absolute right-0 mt-2 w-52 overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-soft z-20">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          navigate("/profile");
+                          setMenuOpen(false);
+                        }}
+                        className="w-full px-4 py-3 text-left text-sm font-semibold text-ink hover:bg-mist transition-colors"
+                      >
+                        View Profile
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          navigate("/dashboard");
+                          setMenuOpen(false);
+                        }}
+                        className="w-full px-4 py-3 text-left text-sm font-semibold text-ink hover:bg-mist transition-colors"
+                      >
+                        Dashboard
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          navigate("/settings");
+                          setMenuOpen(false);
+                        }}
+                        className="w-full px-4 py-3 text-left text-sm font-semibold text-ink hover:bg-mist transition-colors"
+                      >
+                        Settings
+                      </button>
+                      <div className="border-t border-ink/10" />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          logout();
+                          setMenuOpen(false);
+                        }}
+                        className="w-full px-4 py-3 text-left text-sm font-semibold text-ember hover:bg-ember/10 transition-colors"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  </>
                 )}
               </div>
             ) : (
               <NavLink
                 to="/login"
-                className="rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white"
+                className="rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white hover:bg-ink/90 transition-colors"
               >
                 Login
               </NavLink>

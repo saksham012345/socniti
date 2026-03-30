@@ -8,6 +8,7 @@
     "packages/*"
   ],
   "scripts": {
+    "precheck": "node check-prerequisites.js",
     "dev": "concurrently \"npm run dev --workspace @socniti/frontend\" \"npm run dev --workspace @socniti/api-gateway\" \"npm run dev --workspace @socniti/auth-service\" \"npm run dev --workspace @socniti/event-service\" \"npm run dev --workspace @socniti/chat-service\"",
     "dev:frontend": "npm run dev --workspace @socniti/frontend",
     "dev:gateway": "npm run dev --workspace @socniti/api-gateway",
